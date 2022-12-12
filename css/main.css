@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
-html{
+html,body{
   height: 100%;
   display: grid;
 }
@@ -8,7 +8,7 @@ body{
   font-family: 'Montserrat',sans-serif;
   display: grid;
   grid-template-columns: 12% auto ;
-  grid-template-rows:  auto 51px;
+  grid-template-rows:  auto 51px ;
   
   grid-template-areas: 
     "sidebar right"
@@ -37,6 +37,7 @@ ul li a {color:#fff;padding: 15px;}
 header{
   background-color:#41C7C7;
   display:grid;
+  grid-area: head;
   grid-template-columns:[logo-start] fit-content(20% ) [logo-end] auto;
 }
 section#hero{ 
@@ -44,6 +45,7 @@ section#hero{
   padding: 2em;
   border-top: 5px solid #2EA0A0;
   display:grid;
+  grid-area: hero;
   grid-template-columns: repeat(2,auto);
   }
   #content h1{
@@ -75,23 +77,31 @@ section#hero{
 }
 .main{
   grid-area: right;
-  grid-template-rows: 51px fit-content(30%) 40%;
+  grid-template-rows: 51px fit-content(30%) 40% auto;
   display: grid;
+  grid-template-areas:
+  "head"
+  "hero"
+  "info"
+  "features"
 }
+
 footer{
   grid-area: footer;
   background-color: gray;
 }
 #features{
   display: grid;
-  grid-template-rows: repeat(2,auto);
+  grid-area:features;
+  /* grid-template-rows: repeat(2,auto); */
   grid-template-columns: repeat(3,auto);
-  grid-column-gap:10px;
-  grid-row-gap:10px;
+  
+  /* grid-column-gap:10px;
+  grid-row-gap:10px; */
   /* thay the cho 2 lenh tren  */
   /* grid-gap:10px; */
-  text-align:center;
-  justify-items:start;
+  /* text-align:center;
+  justify-items:start; */
 }
 #features i{
   font-size: 2em;
@@ -99,19 +109,58 @@ footer{
 ul#features{
   margin:0;
   padding: 0;
+  
 }
 ul#features li{
   background-color: lightgray;
   padding: 1em;
-  width: 70%;
+  border-right: 10px solid gainsboro ;
+ 
 }
 ul#features li p{
   color:#4C4C4C4C
 }
-ul#features li:nth-child(3){
-  color: #4C4C4C;
-  justify-self: flex-end;
+
+section#info{
+  display: grid;
+  grid-template-columns: repeat(2 ,auto);
+  padding:3em;
+  grid-area: info;
+  
 }
-ul#features li:nth-child(6){
-  justify-self: end;
+#img_info{
+  border-radius: 1px 150px 1px 150px ;
+}
+
+@media screen and (max-width:60em) {  
+  .sidebar{
+    display: none;
+  }
+  body{
+
+  display: grid;
+  grid-template-columns:  auto ;
+  grid-template-rows:  auto 51px 0px;
+  
+  grid-template-areas: 
+    "right"
+    " footer";
+  
+}
+.main {
+  
+  grid-template-areas:
+  "head"
+  "info"
+  "hero"
+  "features"
+  }
+}
+@media screen and (max-width:40em){
+  nav ul li a{
+    font-size: 12px;
+  }
+  #logo{
+    font-size: 13px;
+  }
 }
